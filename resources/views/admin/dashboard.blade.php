@@ -91,14 +91,46 @@
                     </a>
                 </li>
                 <li class="nav-item  active ">
-                    <a href="{{ route('dashboard') }}" class="nav-link">
+                    <a href="{{ url('/admin/persil') }}" class="nav-link">
                         <span class="sidebar-icon">
                             <svg class="icon icon-xs me-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z"></path>
                                 <path d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z"></path>
                             </svg>
                         </span>
-                        <span class="sidebar-text">Dashboard</span>
+                        <span class="sidebar-text">Persil</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ url('/admin/dokumen-persil') }}" class="nav-link">
+                        <span class="sidebar-icon">
+                            <svg class="icon icon-xs me-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h6a2 2 0 002-2V9.414A2 2 0 0011.586 8L9 5.414A2 2 0 007.586 5H4z"/></svg>
+                        </span>
+                        <span class="sidebar-text">Dokumen Persil</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ url('/admin/peta-persil') }}" class="nav-link">
+                        <span class="sidebar-icon">
+                            <svg class="icon icon-xs me-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M4 3l4 2 4-2 4 2v12l-4-2-4 2-4-2V3z"/></svg>
+                        </span>
+                        <span class="sidebar-text">Peta Persil</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ url('/admin/sengketa-persil') }}" class="nav-link">
+                        <span class="sidebar-icon">
+                            <svg class="icon icon-xs me-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 2a8 8 0 100 16 8 8 0 000-16zm1 11H9v-1h2v1zm0-2H9V5h2v6z"/></svg>
+                        </span>
+                        <span class="sidebar-text">Sengketa Persil</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ url('/admin/jenis-penggunaan') }}" class="nav-link">
+                        <span class="sidebar-icon">
+                            <svg class="icon icon-xs me-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M4 3h12a1 1 0 011 1v12a1 1 0 01-1 1H4a1 1 0 01-1-1V4a1 1 0 011-1z"/></svg>
+                        </span>
+                        <span class="sidebar-text">Jenis Penggunaan</span>
                     </a>
                 </li>
                 <li class="nav-item">

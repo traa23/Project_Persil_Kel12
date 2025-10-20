@@ -7,6 +7,18 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// Convenience redirect so /persil maps to admin resource
+Route::redirect('/persil', '/admin/persil');
+
+// Admin resource routes
+Route::prefix('admin')->name('admin.')->group(function () {
+    Route::resource('persil', \App\Http\Controllers\PersilController::class);
+    Route::resource('dokumen-persil', \App\Http\Controllers\DokumenPersilController::class);
+    Route::resource('peta-persil', \App\Http\Controllers\PetaPersilController::class);
+    Route::resource('sengketa-persil', \App\Http\Controllers\SengketaPersilController::class);
+    Route::resource('jenis-penggunaan', \App\Http\Controllers\JenisPenggunaanController::class);
+});
+
 Route::get('/ketua', function () {
     return view('ketua');
 });
