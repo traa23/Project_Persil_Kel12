@@ -22,7 +22,7 @@ class PersilController extends Controller
      */
     public function create()
     {
-        $users = User::orderBy('name')->get(['id','name','email']);
+        $users = User::orderBy('name')->get(['id', 'name', 'email']);
         return view('admin.persil.create', compact('users'));
     }
 
@@ -58,8 +58,8 @@ class PersilController extends Controller
      */
     public function edit(Persil $persil)
     {
-        $users = User::orderBy('name')->get(['id','name','email']);
-        return view('admin.persil.edit', compact('persil','users'));
+        $users = User::orderBy('name')->get(['id', 'name', 'email']);
+        return view('admin.persil.edit', compact('persil', 'users'));
     }
 
     /**

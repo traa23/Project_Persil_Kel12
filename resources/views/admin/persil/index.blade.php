@@ -1,70 +1,82 @@
-@extends('layouts.admin')
+@extends('layouts.sbadmin2')
 
 @section('content')
-<div class="container">
-	<div class="d-flex justify-content-between align-items-center mb-3">
-		<div>
-			<nav aria-label="breadcrumb">
-				<ol class="breadcrumb mb-1">
-					<li class="breadcrumb-item"><a href="{{ url('/admin/persil') }}">Persil</a></li>
-					<li class="breadcrumb-item active" aria-current="page">List</li>
-				</ol>
-			</nav>
-			<h1 class="h3 mb-0">Data Persil</h1>
-			<small>List data seluruh persil</small>
-		</div>
-		<a href="{{ route('admin.persil.create') }}" class="btn btn-success">Tambah Persil</a>
-	</div>
+<!-- Page Heading -->
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Data Persil</h1>
+    <a href="{{ route('admin.persil.create') }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+        <i class="fas fa-plus fa-sm text-white-50"></i> Tambah Persil
+    </a>
+</div>
 
-	@if(session('success'))
-		<div class="alert alert-success">{{ session('success') }}</div>
-	@endif
-	@if($errors->any())
-		<div class="alert alert-danger">Terjadi kesalahan input. Periksa kembali form Anda.</div>
-	@endif
+@if(session('success'))
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{ session('success') }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+@endif
 
-	<div class="card border-0 shadow">
-		<div class="card-body p-0">
-			<div class="table-responsive">
-				<table class="table align-items-center table-flush mb-0">
-					<thead class="thead-light">
-						<tr>
-							<th scope="col">Kode Persil</th>
-							<th scope="col">Pemilik</th>
-							<th scope="col">Luas (m2)</th>
-							<th scope="col">Penggunaan</th>
-							<th scope="col" class="text-end">Action</th>
-						</tr>
-					</thead>
-					<tbody>
-					@forelse($items as $item)
-						<tr>
-							<td class="text-gray-900 fw-bold">{{ $item->kode_persil }}</td>
-							<td>{{ optional($item->pemilik)->name }}</td>
-							<td>{{ $item->luas_m2 }}</td>
-							<td>{{ $item->penggunaan }}</td>
-							<td class="text-end">
-								<a class="btn btn-sm btn-outline-secondary" href="{{ route('admin.persil.show', $item->persil_id) }}">Detail</a>
-								<a class="btn btn-sm btn-primary" href="{{ route('admin.persil.edit', $item->persil_id) }}">Edit</a>
-								<form class="d-inline" method="POST" action="{{ route('admin.persil.destroy', $item->persil_id) }}" onsubmit="return confirm('Hapus data ini?')">
-									@csrf
-									@method('DELETE')
-									<button class="btn btn-sm btn-danger" type="submit">Hapus</button>
-								</form>
-							</td>
-						</tr>
-					@empty
-						<tr><td colspan="5" class="text-center text-muted">Belum ada data</td></tr>
-					@endforelse
-					</tbody>
-				</table>
-			</div>
-		</div>
-	</div>
+@if($errors->any())
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        Terjadi kesalahan input. Periksa kembali form Anda.
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+@endif
 
-	<div class="mt-3">
-		{{ $items->links() }}
-	</div>
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Daftar Persil</h6>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Kode Persil</th>
+                        <th>Pemilik</th>
+                        <th>Luas (m2)</th>
+                        <th>Penggunaan</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                @forelse($items as $item)
+                    <tr>
+                        <td class="font-weight-bold">{{ $item->kode_persil }}</td>
+                        <td>{{ optional($item->pemilik)->name }}</td>
+                        <td>{{ $item->luas_m2 }}</td>
+                        <td>{{ $item->penggunaan }}</td>
+                        <td>
+                            <a class="btn btn-info btn-sm" href="{{ route('admin.persil.show', $item->persil_id) }}">
+                                <i class="fas fa-eye"></i>
+                            </a>
+                            <a class="btn btn-warning btn-sm" href="{{ route('admin.persil.edit', $item->persil_id) }}">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                            <form class="d-inline" method="POST" action="{{ route('admin.persil.destroy', $item->persil_id) }}" onsubmit="return confirm('Hapus data ini?')">
+                                @csrf
+                                @method('DELETE')
+                                <button class="btn btn-danger btn-sm" type="submit">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                @empty
+                    <tr><td colspan="5" class="text-center">Belum ada data</td></tr>
+                @endforelse
+                </tbody>
+            </table>
+        </div>
+        <div class="mt-3">
+            {{ $items->links() }}
+        </div>
+    </div>
 </div>
 @endsection
 
