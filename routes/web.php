@@ -7,7 +7,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Convenience redirect so /persil maps to admin resource
+// Redirects
 Route::redirect('/persil', '/admin/persil');
 
 // Admin resource routes

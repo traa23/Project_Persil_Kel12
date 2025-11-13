@@ -1,80 +1,73 @@
-@extends('layouts.sbadmin2')
+@extends('layouts.admin')
 
 @section('content')
-<!-- Page Heading -->
-<div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-gray-800">Detail Persil</h1>
-    <a href="{{ route('admin.persil.index') }}" class="d-none d-sm-inline-block btn btn-sm btn-secondary shadow-sm">
-        <i class="fas fa-arrow-left fa-sm text-white-50"></i> Kembali
-    </a>
+<div class="page-header">
+    <h3 class="page-title">
+        <span class="page-title-icon bg-gradient-primary text-white mr-2">
+            <i class="mdi mdi-map-marker-multiple"></i>
+        </span> Detail Persil
+    </h3>
+    <nav aria-label="breadcrumb">
+        <ul class="breadcrumb">
+            <li class="breadcrumb-item active" aria-current="page">
+                <span></span>Detail Data Persil
+            </li>
+        </ul>
+    </nav>
 </div>
 
-<!-- Detail Card -->
-<div class="card shadow mb-4">
-    <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">Informasi Persil</h6>
+<div class="row">
+    <div class="col-lg-8 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Informasi Detail</h4>
+                <div class="table-responsive">
+                    <table class="table">
+                        <tr>
+                            <th width="30%">Kode Persil</th>
+                            <td>{{ $persil->kode_persil }}</td>
+                        </tr>
+                        <tr>
+                            <th>Pemilik</th>
+                            <td>{{ optional($persil->pemilik)->name ?? 'Tidak ada' }}</td>
+                        </tr>
+                        <tr>
+                            <th>Luas</th>
+                            <td>{{ $persil->luas_m2 ?? 'Tidak ada' }} m²</td>
+                        </tr>
+                        <tr>
+                            <th>Penggunaan</th>
+                            <td>{{ $persil->penggunaan ?? 'Tidak ada' }}</td>
+                        </tr>
+                        <tr>
+                            <th>RT</th>
+                            <td>{{ $persil->rt ?? 'Tidak ada' }}</td>
+                        </tr>
+                        <tr>
+                            <th>RW</th>
+                            <td>{{ $persil->rw ?? 'Tidak ada' }}</td>
+                        </tr>
+                        <tr>
+                            <th>Alamat Lahan</th>
+                            <td>{{ $persil->alamat_lahan ?? 'Tidak ada' }}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="card-body">
-        <div class="row">
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label class="font-weight-bold">Kode Persil:</label>
-                    <p class="form-control-plaintext">{{ $persil->kode_persil }}</p>
-                </div>
+    <div class="col-lg-4 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Aksi</h4>
+                <a href="{{ route('admin.persil.edit', $persil->persil_id) }}" class="btn btn-gradient-warning btn-block mb-2">
+                    <i class="mdi mdi-pencil"></i> Edit
+                </a>
+                <a href="{{ route('admin.persil.index') }}" class="btn btn-light btn-block">
+                    <i class="mdi mdi-arrow-left"></i> Kembali
+                </a>
             </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label class="font-weight-bold">Pemilik:</label>
-                    <p class="form-control-plaintext">{{ optional($persil->pemilik)->name ?? '-' }}</p>
-                </div>
-            </div>
-        </div>
-        
-        <div class="row">
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label class="font-weight-bold">Luas (m2):</label>
-                    <p class="form-control-plaintext">{{ $persil->luas_m2 ?? '-' }}</p>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label class="font-weight-bold">Penggunaan:</label>
-                    <p class="form-control-plaintext">{{ $persil->penggunaan ?? '-' }}</p>
-                </div>
-            </div>
-        </div>
-        
-        <div class="form-group">
-            <label class="font-weight-bold">Alamat Lahan:</label>
-            <p class="form-control-plaintext">{{ $persil->alamat_lahan ?? '-' }}</p>
-        </div>
-        
-        <div class="row">
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label class="font-weight-bold">RT:</label>
-                    <p class="form-control-plaintext">{{ $persil->rt ?? '-' }}</p>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label class="font-weight-bold">RW:</label>
-                    <p class="form-control-plaintext">{{ $persil->rw ?? '-' }}</p>
-                </div>
-            </div>
-        </div>
-        
-        <div class="form-group">
-            <a href="{{ route('admin.persil.edit', $persil->persil_id) }}" class="btn btn-primary">
-                <i class="fas fa-edit"></i> Edit
-            </a>
-            <a href="{{ route('admin.persil.index') }}" class="btn btn-secondary">
-                <i class="fas fa-arrow-left"></i> Kembali
-            </a>
         </div>
     </div>
 </div>
 @endsection
-
-
